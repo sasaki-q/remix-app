@@ -18,10 +18,13 @@ export default function AddExpensesPage() {
 
 export const action = async({ request }: {request: Request}) => {
     const formData = await request.formData()
-    const expenseData = Object.fromEntries(formData) as any as ExpensesType
+    const expenseData = Object.fromEntries(formData) as unknown as ExpensesType
 
-    const res = await addExpense(expenseData)
-    console.log("DEBUG prisma response === ", res)
+    // useActionData cache this error
+    // if(expenseData.title.length < 10) {
+    //     return "title must be at least 10 characters"
+    // }
 
+    await addExpense(expenseData)
     return redirect("/expenses")
 }

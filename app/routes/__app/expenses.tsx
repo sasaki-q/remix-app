@@ -1,12 +1,13 @@
 // /expenses => share this component
 
-import { Link, Outlet } from "@remix-run/react";
+import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { FaPlus, FaDownload } from "react-icons/fa"
 import { ExpensesList } from "~/components/expenses";
+import { getExpenses } from "~/server/expenses.server";
 import expensesStyles from "~/styles/expenses.css"
-import { DUMMY_DATA } from "~/utils/constants";
 
 export default function ExpensesLayput() {
+    const data = useLoaderData()
     return (
         <>
             <Outlet/>
@@ -21,7 +22,7 @@ export default function ExpensesLayput() {
                         <span>Load Row Data</span>
                     </a>
                 </section>
-                <ExpensesList expenses={DUMMY_DATA}/>
+                <ExpensesList expenses={data}/>
             </main>
         </>
     )
@@ -30,3 +31,5 @@ export default function ExpensesLayput() {
 export const links = () => [
     {rel: "stylesheet", href: expensesStyles},
 ]
+
+export const loader = () => getExpenses()

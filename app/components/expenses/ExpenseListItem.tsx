@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react"
+import { Form, Link, useFetcher } from "@remix-run/react"
 
 type Props = {
   id: string
@@ -7,7 +7,22 @@ type Props = {
 }
 
 export const ExpenseListItem = ({ id, title, amount }: Props) => {
-  const deleteExpenseItemHandler = () => {}
+  const fetcher = useFetcher()
+
+  // add confirmation step
+  const submitHandler = () => fetcher.submit(null, { 
+    method: "delete", 
+    action: `/expenses/${id}`
+  })
+
+  if(fetcher.state !== "idle") {
+    return (
+      <article className="expense-item locked">
+        <p>Deleting ...</p>
+      </article>
+    )
+  }
+
 
   return (
     <article className="expense-item">
@@ -16,7 +31,10 @@ export const ExpenseListItem = ({ id, title, amount }: Props) => {
         <p className="expense-amount">${amount.toFixed(2)}</p>
       </div>
       <menu className="expense-actions">
-        <button onClick={deleteExpenseItemHandler}>Delete</button>
+        {/* <Form method="delete" action={`/expenses/${id}`}>
+          <button formMethod="delete" onClick={submitHandler}>Delete</button>
+        </Form> */}
+        <button onClick={submitHandler}>Delete</button>
         <Link to={id}>Edit</Link>
       </menu>
     </article>

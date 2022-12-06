@@ -1,10 +1,15 @@
-import { Link, useSearchParams } from '@remix-run/react';
+import { 
+  Link, 
+  useSearchParams,
+  useTransition as useNavigate 
+} from '@remix-run/react';
 import { FaLock, FaUserPlus } from 'react-icons/fa';
 
 export const AuthForm = () => {
   const [ params ] = useSearchParams()
+  const navigate = useNavigate()
+  
   const authMode = params.get("mode") || "login"
-
   const toggleContents = authMode === "login"
     ? {
       icon: FaLock,
@@ -23,6 +28,8 @@ export const AuthForm = () => {
       path: "?mode=login"
     }
 
+  const isSubmitting = navigate.state !== "idle"
+
   return (
     <form method="post" className="form" id="auth-form">
       <div className="icon-img">
@@ -37,7 +44,9 @@ export const AuthForm = () => {
         <input type="password" id="password" name="password" minLength={7} />
       </p>
       <div className="form-actions">
-        <button>{toggleContents.caption[0]}</button>
+        <button disabled={isSubmitting}>
+          {isSubmitting ? "Authenticating ..." : toggleContents.caption[0]}
+        </button>
         <Link to={toggleContents.path}>{toggleContents.caption[1]}</Link>
       </div>
     </form>

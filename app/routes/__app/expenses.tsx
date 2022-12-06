@@ -33,3 +33,6 @@ export const links = () => [
 ]
 
 export const loader = () => getExpenses()
+
+// override root boundary
+export const CatchBoundary = () => {}

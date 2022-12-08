@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { ExpensesType } from '~/types/expenses';
+import { ExpensesType } from '~/types';
 
 type Props = {
   expenses: ExpensesType[]

@@ -15,7 +15,7 @@ export const AuthForm = () => {
       icon: FaLock,
       caption: [
         "Login",
-        "Log in with existing user",
+        "Create a new user ?",
       ],
       path: "?mode=signup"
     }
@@ -23,7 +23,7 @@ export const AuthForm = () => {
       icon: FaUserPlus,
       caption: [
         "Sign up",
-        "Create a mew user",
+        "Log in with existing user ?",
       ],
       path: "?mode=login"
     }
@@ -41,7 +41,7 @@ export const AuthForm = () => {
       </p>
       <p>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" minLength={7} />
+        <input type="password" id="password" name="password" minLength={7} required defaultValue={""}/>
       </p>
       <div className="form-actions">
         <button disabled={isSubmitting}>

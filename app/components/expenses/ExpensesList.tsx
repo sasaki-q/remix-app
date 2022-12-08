@@ -1,4 +1,4 @@
-import { ExpensesType } from '~/types/expenses';
+import { ExpensesType } from '~/types';
 import { ExpenseListItem } from './ExpenseListItem';
 
 type Props = {

@@ -1,4 +1,4 @@
-import { Link, NavLink } from '@remix-run/react';
+import { Form, Link, NavLink } from '@remix-run/react';
 import { Logo } from '../util/Logo';
 
 export const MainHeader = () => {
@@ -18,9 +18,11 @@ export const MainHeader = () => {
       <nav id="cta-nav">
         <ul>
           <li>
-            <Link to="/auth" className="cta">
-              Logout
-            </Link>
+            <Form method='post' action='/logout'>
+              <button className='cta'>
+                Logout
+              </button>
+            </Form>
           </li>
         </ul>
       </nav>

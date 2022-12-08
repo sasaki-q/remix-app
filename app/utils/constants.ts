@@ -1,4 +1,4 @@
-import { ExpensesType } from "~/types/expenses";
+import { ExpensesType } from "~/types";
 
 export const DUMMY_DATA: ExpensesType[] = [
     {

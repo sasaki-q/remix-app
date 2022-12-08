@@ -3,6 +3,7 @@
 import { Link, Outlet, useLoaderData } from "@remix-run/react";
 import { FaPlus, FaDownload } from "react-icons/fa"
 import { ExpensesList } from "~/components/expenses";
+import { requireUserSession } from "~/server/auth.server";
 import { getExpenses } from "~/server/expenses.server";
 import expensesStyles from "~/styles/expenses.css"
 
@@ -32,7 +33,10 @@ export const links = () => [
     {rel: "stylesheet", href: expensesStyles},
 ]
 
-export const loader = () => getExpenses()
+export const loader = async({request}: {request: Request}) => {
+    const userId = await requireUserSession(request)
+    return getExpenses(userId)
+}
 
 // override root boundary
 export const CatchBoundary = () => {}

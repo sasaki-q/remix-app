@@ -1,5 +1,3 @@
-import { DUMMY_DATA } from "~/utils/constants";
+import { getExpenses } from "~/server/expenses.server";
 
-export function loader() {
-    return DUMMY_DATA
-}
+export const loader = () => getExpenses()

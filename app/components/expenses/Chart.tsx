@@ -1,4 +1,4 @@
-import { ExpensesType } from '~/types/expenses';
+import { ExpensesType } from '~/types';
 import { ChartBar } from './';
 
 type Props = {

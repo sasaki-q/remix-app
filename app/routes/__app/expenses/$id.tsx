@@ -3,7 +3,7 @@ import { useNavigate } from "@remix-run/react";
 import { ExpenseForm } from "~/components/expenses";
 import { Modal } from "~/components/util";
 import { getExpense, updateExpense, deleteExpense } from "~/server/expenses.server";
-import { ExpensesType } from "~/types/expenses";
+import { ExpensesType } from "~/types";
 
 export default function UpdateExpensesPage() {
     const navigate = useNavigate()
